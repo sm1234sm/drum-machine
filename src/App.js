@@ -119,7 +119,6 @@ const DrumPad = (props) => {
   const [padStyle, changePadStyle] = useState({ style: 'inactive' });
 
   const playSound = () => {
-    console.log(props.power)
     if (props.power) {
       const sound = document.getElementById(props.keyTrigger);
       sound.currentTime = 0;
@@ -251,6 +250,7 @@ const App = (props) => {
   const adjustVolume = (e) => {
     if (state.power) {
       changeState(prevState => ({
+        ...prevState,
         sliderVal: e.target.value,
         display: 'Volume: ' + Math.round(e.target.value * 100)
       }));
@@ -261,7 +261,7 @@ const App = (props) => {
   const clearDisplay = () => {
     changeState(prevState => ({
       ...prevState,
-      display: String.fromCharCode(160)
+      display: ""
     }));
   }
 
